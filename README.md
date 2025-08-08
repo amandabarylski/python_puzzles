@@ -1,0 +1,1 @@
+As I learn Python, I wanted a way to practice with it on my own. My initial idea was to program a randomly generated ordering puzzle. However, I also intend to add a large number guessing game based on one that I made in Java, and should I have additional ideas this repository will serve as a nice collection.
