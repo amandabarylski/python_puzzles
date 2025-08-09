@@ -20,11 +20,57 @@ def color_ordering_puzzle():
     #Before starting the while loop with the puzzle-solving, I needed hints to show the user.
     #I used the zip function to pair up the index numbers from the first and second select lists.
     for i, j in zip(first_select, second_select):
+        #To make the hints less predictable, I used random to select one of three options.
         option = random.choice([1, 2, 3])
-        print(option)
+        #Since some of my hint ideas had to do with where one color is in relation to another,
+        #I made other hints for if an index number was paired up with itself.
+        if i == j:
+            if option == 1:
+                if i == 0:
+                    hints.append(f'{color_order[i]} is in the first position.')
+                else:
+                    hints.append(f'{color_order[i]} is not in the first position.')
+            elif option == 2:
+                if i == 6:
+                    hints.append(f'{color_order[i]} is in the last position.')
+                else:
+                    hints.append(f'{color_order[i]} is not in the last position.')
+            elif option == 3:
+                if i == 3:
+                    hints.append(f'{color_order[i]} is in the middle position.')
+                elif i < 3:
+                    hints.append(f'{color_order[i]} is before the middle postion.')
+                elif i > 3:
+                    hints.append(f'{color_order[i]} is after the middle postion.')
+        else:
+            #I made more nested if statements than I expected in order to produce better hints.
+            #My first attempt was repetetive and probably unsolvable.
+            if option == 1:
+                if i < j:
+                    hints.append(f'{color_order[i]} is before {color_order[j]}.')
+                else:
+                    hints.append(f'{color_order[i]} is after {color_order[j]}.')
+            elif option == 2:
+                if abs(i - j) == 1:
+                    hints.append(f'{color_order[i]} is next to {color_order[j]}.')
+                else:
+                    hints.append(f'{color_order[i]} is {abs(i - j)} away from {color_order[j]}.')
+            elif option == 3:
+                if i == 0 or j == 0:
+                    if abs(i - j) == 1:
+                        hints.append(f'Either {color_order[i]} or {color_order[j]} is in the first position and they are next to each other.')
+                    else:
+                        hints.append(f'Either {color_order[i]} or {color_order[j]} is in the first position and they are not next to each other.')
+                elif i == 6 or j == 6:
+                    if abs(i - j) == 1:
+                        hints.append(f'Either {color_order[i]} or {color_order[j]} is in the last position and they are next to each other.')
+                    else:
+                        hints.append(f'Either {color_order[i]} or {color_order[j]} is in the last position and they are not next to each other.')
+                else:
+                    hints.append(f'Neither {color_order[i]} nor {color_order[j]} is in the first or last position.')
 
     #This print function is my test print, which I alter the contents of to check that various aspects of the code work.
-    print(solution)
+    print(hints, solution)
 
-#While working on elements that could become infinite loops, I commented out the function call as a precaution.
+#While working on elements that could become infinite loops, I comment out the function call as a precaution.
 color_ordering_puzzle()
