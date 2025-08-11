@@ -69,8 +69,42 @@ def color_ordering_puzzle():
                 else:
                     hints.append(f'Neither {color_order[i]} nor {color_order[j]} is in the first or last position.')
 
-    #This print function is my test print, which I alter the contents of to check that various aspects of the code work.
-    print(hints, solution)
 
-#While working on elements that could become infinite loops, I comment out the function call as a precaution.
+    #With the hints generated and compiled into a list, they can be used in the game itself, contained in a while loop.
+    #A couple of variables are needed as well to track whether the player has won and how many times they have guessed.
+    win = False
+    count = 0
+    while count < 3 and not win:
+        #A note for the player on how many guesses they have remaining
+        print(f'You can guess {3 - count} more times.')
+        #The list of hints
+        for hint in hints:
+            print(hint)
+        #Rules on how to format the answer
+        print('Make sure you separate each color with a comma and a single space, and spell them correctly!')
+
+        #User input for the answer
+        answer = input('Type your answer here:')
+
+        #Checking the answer agains the solution, using .lower() in case the user typed any uppercase letters.
+        #The count gets incremented no matter what, but win is switched to True if the answer is correct.
+        if answer.lower() == solution:
+            win = True
+            count += 1
+        else:
+            count += 1
+    
+    if win:
+        print(f'Congratulations! It took you {count} try/tries to reach the answer.')
+    else:
+        print(f'The solution was: {solution}. Better luck next time!')
+
+
+
+
+    #This print function is my test print, which I alter the contents of to check that various aspects of the code work.
+    #Commented out after it was no longer needed.
+    # print(hints, solution)
+
+#While working on elements that could become infinite loops, I commented out the function call as a precaution.
 color_ordering_puzzle()
