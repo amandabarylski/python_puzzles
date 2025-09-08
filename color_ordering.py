@@ -95,7 +95,7 @@ def color_ordering_puzzle():
             count += 1
     
     if win:
-        print(f'Congratulations! It took you {count} try/tries to reach the answer.')
+        print(f'Congratulations! It took you {count} {"try" if count == 1 else "tries"} to reach the answer.')
     else:
         print(f'The solution was: {solution}. Better luck next time!')
 
